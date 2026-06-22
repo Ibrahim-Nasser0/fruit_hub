@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.example.fruit_hub"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "29.0.13599879"
+    ndkVersion = "30.0.14904198"
     
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
