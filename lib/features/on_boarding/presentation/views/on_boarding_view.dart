@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_hub/features/on_boarding/presentation/views/widgets/on_boarding_body.dart';
 
 class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('OnBoarding', style: TextStyle(fontSize: 18.sp)),
-      ),
-      body: Center(
-        child: Text('OnBoarding Feature', style: TextStyle(fontSize: 24.sp)),
-      ),
-    );
+    return Scaffold(body: OnBoardingBody());
   }
 }

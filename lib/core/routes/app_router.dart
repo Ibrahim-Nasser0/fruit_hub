@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_View.dart';
 import 'routes.dart';
-import '../../features/splash/splash_screen.dart';
+
 
 /// Application Router
 class AppRouter {
@@ -15,7 +15,7 @@ class AppRouter {
       case Routes.onboarding:
         return _buildRoute(const OnBoardingView(), settings);
       case Routes.home:
-        return _buildRoute(const SplashScreen(), settings);
+        return _buildRoute(const SplashView(), settings);
       default:
         return _buildRoute(
           Scaffold(

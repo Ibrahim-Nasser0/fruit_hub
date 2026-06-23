@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruit_hub/core/routes/app_router.dart';
 import 'package:fruit_hub/core/routes/routes.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
 
@@ -14,14 +15,13 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    executeNaviagtion();
+    executeNaviagtion(context);
     super.initState();
   }
 
-  void executeNaviagtion() {
+  void executeNaviagtion(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, Routes.onboarding);
+      AppRouter.navigateAndReplace(context, Routes.onboarding);
     });
   }
 

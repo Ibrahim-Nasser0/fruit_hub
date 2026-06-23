@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theme/colors.dart';
 
 class CustomButton extends StatelessWidget {
@@ -61,7 +62,7 @@ class CustomButton extends StatelessWidget {
         width: 24,
         height: 24,
         child: CircularProgressIndicator(
-          color: AppColors.primary,
+          color: AppColors.textOnPrimary,
           strokeWidth: 2.5,
         ),
       );
@@ -69,9 +70,9 @@ class CustomButton extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w900,
-        color: AppColors.primary,
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textOnPrimary,
       ),
     );
   }
