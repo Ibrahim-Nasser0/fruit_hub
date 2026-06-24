@@ -6,6 +6,9 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: OnBoardingBody());
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: OnBoardingBody(),
+    );
   }
 }

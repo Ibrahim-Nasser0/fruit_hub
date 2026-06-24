@@ -2,58 +2,80 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_hub/core/routes/app_router.dart';
+import 'package:fruit_hub/core/routes/routes.dart';
 import 'package:fruit_hub/core/theme/colors.dart';
 import 'package:fruit_hub/core/utils/constants.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
+import 'package:fruit_hub/features/on_boarding/presentation/models/page_view_item_model.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/widgets/page_view_item.dart';
 import 'package:gap/gap.dart';
 
+
 class OnBoardingPageView extends StatefulWidget {
-  const OnBoardingPageView({super.key, required this.pageController});
-  final PageController pageController;
+  const OnBoardingPageView({super.key});
 
   @override
   State<OnBoardingPageView> createState() => _OnBoardingPageViewState();
 }
 
 class _OnBoardingPageViewState extends State<OnBoardingPageView> {
+  late final PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController();
+    pageController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<PageViewItemModel> onBoardingPages =
+        AppConstants.onBoardingPages(context);
     return Column(
       children: [
         Expanded(
           child: PageView.builder(
-            controller: widget.pageController,
-            itemCount: AppConstants.onBoardingPages.length,
+            controller: pageController,
+            itemCount: onBoardingPages.length,
             itemBuilder: (context, index) {
               return PageViewItem(
-                pageController: widget.pageController,
-                pageViewItemModel: AppConstants.onBoardingPages[index],
-        
+                pageController: pageController,
+                pageViewItemModel: onBoardingPages[index],
               );
             },
           ),
         ),
-        Gap(60.h),
+        Gap(40.h),
 
         AnimatedBuilder(
-          animation: widget.pageController,
+          animation: pageController,
           builder: (context, child) {
-            final currentPage = widget.pageController.hasClients
-                ? (widget.pageController.page?.round() ?? 0)
+            final currentPage = pageController.hasClients
+                ? (pageController.page?.round() ?? 0)
                 : 0;
 
             return Column(
               children: [
                 DotsIndicator(
-                  dotsCount: AppConstants.onBoardingPages.length,
-                  position: widget.pageController.hasClients
-                      ? (widget.pageController.page ?? 0)
+                  dotsCount: onBoardingPages.length,
+                  position: pageController.hasClients
+                      ? (pageController.page ?? 0)
                       : 0,
                   decorator: DotsDecorator(
                     activeColor: AppColors.primary,
-                    color: const Color(0xff5DB957),
+                    color: currentPage == onBoardingPages.length - 1
+                        ? AppColors.primary
+                        : const Color(0xff5DB957),
                     size: const Size.square(8),
                     activeSize: const Size(18, 8),
                     activeShape: RoundedRectangleBorder(
@@ -62,18 +84,20 @@ class _OnBoardingPageViewState extends State<OnBoardingPageView> {
                   ),
                 ),
                 Gap(5.h),
-                if (currentPage == AppConstants.onBoardingPages.length - 1)
-                  CustomButton(
+
+                Visibility(
+                  visible: currentPage == onBoardingPages.length - 1,
+                  maintainSize: true,
+                  maintainAnimation: true,
+                  maintainState: true,
+                  child: CustomButton(
                     width: 343.w,
                     text: 'get_started'.tr(),
-                    onPressed: () {
-                      // Navigate to the next screen
-                    },
-                  )
-                else
-                  SizedBox(
-                    height: 55,
-                  ), // Add spacing when the button is not visible
+                    onPressed: () =>
+                        AppRouter.navigateAndRemoveUntil(context, Routes.login),
+                  ),
+                ),
+                // Add spacing when the button is not visible
               ],
             );
           },

@@ -38,25 +38,31 @@ class CustomButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(borderRadius),
                 ),
               ),
-              child: _buildChild(),
+              child: _buildChild(context),
             )
           : ElevatedButton(
               onPressed: isLoading ? null : onPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: color ?? AppColors.primary,
-                foregroundColor: AppColors.primary,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(borderRadius),
+              style: Theme.of(context).elevatedButtonTheme.style?.copyWith(
+                backgroundColor: MaterialStateProperty.all(
+                  color ?? AppColors.primary,
                 ),
-                elevation: 4,
-                shadowColor: (color ?? AppColors.primary).withOpacity(0.4),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(borderRadius),
+                  ),
+                ),
+                elevation: MaterialStateProperty.all(4),
+                shadowColor: MaterialStateProperty.all(
+                  (color ?? AppColors.primary).withOpacity(0.4),
+                ),
               ),
-              child: _buildChild(),
+
+              child: _buildChild(context),
             ),
     );
   }
 
-  Widget _buildChild() {
+  Widget _buildChild(BuildContext context) {
     if (isLoading) {
       return const SizedBox(
         width: 24,
@@ -69,11 +75,18 @@ class CustomButton extends StatelessWidget {
     }
     return Text(
       text,
-      style: TextStyle(
-        fontSize: 16.sp,
+      style: Theme.of(context).textTheme.displayMedium?.copyWith(
+        color: isOutlined
+            ? (color ?? AppColors.primary)
+            : AppColors.textOnPrimary,
         fontWeight: FontWeight.w700,
-        color: AppColors.textOnPrimary,
+        fontSize: 16.sp,
       ),
+      // style: TextStyle(
+      //   fontSize: 16.sp,
+      //   fontWeight: FontWeight.w700,
+      //   color: AppColors.textOnPrimary,
+      // ),
     );
   }
 }

@@ -53,8 +53,8 @@ class FruitHubApp extends StatelessWidget {
         return MaterialApp(
           title: 'FruitHub App',
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.lightTheme(context.locale),
+          darkTheme: AppTheme.darkTheme(context.locale),
           themeMode: ThemeMode.system,
           initialRoute: Routes.splash,
           onGenerateRoute: AppRouter.generateRoute,

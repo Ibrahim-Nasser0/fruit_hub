@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_hub/core/theme/colors.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/models/page_view_item_model.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -11,58 +13,83 @@ class AppConstants {
   AppConstants._();
 
   //-----OnBoarding-----//
-  static final List<PageViewItemModel> onBoardingPages = [
-    PageViewItemModel(
-      backgroundImage:
-          AppImages.onBoardingBg1, // Use the constant from AppImages
-      iconImage: AppImages.onBoardingIcon1, // Use the constant from AppImages
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'onboarding_title1'.tr(),
-            style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(width: 5.w),
-          RichText(
-            //   textAlign: TextAlign.center,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Fruit',
-                  style: TextStyle(
-                    fontSize: 23.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green, // Highlight color
-                  ),
+  static List<PageViewItemModel> onBoardingPages(BuildContext context) {
+    return [
+      PageViewItemModel(
+        backgroundImage: AppImages.onBoardingBg1,
+        iconImage: AppImages.onBoardingIcon1,
+        title:
+            Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'onboarding_title1'.tr(),
+                      style: Theme.of(context).textTheme.displayMedium,
+                    ),
+                    SizedBox(width: 5.w),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: 'Fruit',
+                            style: Theme.of(context).textTheme.displayMedium
+                                ?.copyWith(color: AppColors.primary),
+                          ),
+                          TextSpan(
+                            text: 'Hub',
+                            style: Theme.of(context).textTheme.displayMedium
+                                ?.copyWith(color: AppColors.secondary),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+                .animate()
+                .fade(delay: 100.ms, duration: 400.ms)
+                .slideY(
+                  begin: .5,
+                  delay: 100.ms,
+                  duration: 400.ms,
+                  curve: Curves.easeOutQuart,
+                )
+                .scale(
+                  begin: const Offset(.7, .7),
+                  end: const Offset(1, 1),
+                  delay: 100.ms,
+                  duration: 400.ms,
+                  curve: Curves.easeOutBack,
                 ),
-                TextSpan(
-                  text: 'Hub',
-                  style: TextStyle(
-                    fontSize: 23.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.orange, // Highlight color
-                  ),
+        subtitle: 'onboarding_desc1'.tr(),
+      ),
+
+      PageViewItemModel(
+        backgroundImage: AppImages.onBoardingBg2,
+        iconImage: AppImages.onBoardingIcon2,
+        title:
+            Text(
+                  'onboarding_title2'.tr(),
+                  style: Theme.of(context).textTheme.displayMedium,
+                )
+                .animate()
+                .fade(delay: 100.ms, duration: 400.ms)
+                .slideY(
+                  begin: .5,
+                  delay: 100.ms,
+                  duration: 400.ms,
+                  curve: Curves.easeOutQuart,
+                )
+                .scale(
+                  begin: const Offset(.7, .7),
+                  end: const Offset(1, 1),
+                  delay: 100.ms,
+                  duration: 400.ms,
+                  curve: Curves.easeOutBack,
                 ),
-              ],
-            ),
-          ),
-        ],
+        subtitle: 'onboarding_desc2'.tr(),
       ),
-      subtitle: 'onboarding_desc1'.tr(),
-    ),
-    PageViewItemModel(
-      backgroundImage:
-          AppImages.onBoardingBg2, // Use the constant from AppImages
-      iconImage: AppImages.onBoardingIcon2, // Use the constant from AppImages
-      title: Text(
-        'onboarding_title2'.tr(),
-        style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
-      ),
-      subtitle: 'onboarding_desc2'.tr(),
-    ),
-  ];
+    ];
+  }
   ////-----End OnBoarding-----////
 
   //-----API Configuration-----//

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fruit_hub/core/routes/app_router.dart';
@@ -15,12 +16,12 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    executeNaviagtion(context);
     super.initState();
+    executeNavigation();
   }
 
-  void executeNaviagtion(BuildContext context) {
-    Future.delayed(const Duration(seconds: 2), () {
+  void executeNavigation() {
+    Future.delayed(const Duration(seconds: 3), () {
       AppRouter.navigateAndReplace(context, Routes.onboarding);
     });
   }
@@ -29,16 +30,46 @@ class _SplashViewState extends State<SplashView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        crossAxisAlignment: .start,
-        mainAxisAlignment: .spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          SvgPicture.asset(AppImages.plant),
+          Align(
+                alignment: Alignment.topLeft,
+                child: SvgPicture.asset(AppImages.plant),
+              )
+              .animate()
+              .fade(duration: 1200.ms, curve: Curves.easeOut)
+              .slideX(
+                begin: -0.4,
+                duration: 1200.ms,
+                curve: Curves.easeOutCubic,
+              ),
 
-          Center(
-            child: Image.asset(AppImages.appLogo, width: 178.w, height: 173.h),
-          ),
+          Image.asset(AppImages.appLogo, width: 178.w, height: 173.h)
+              .animate()
+              .fade(delay: 700.ms, duration: 1500.ms)
+              .slideY(
+                begin: .5,
+                delay: 700.ms,
+                duration: 1500.ms,
+                curve: Curves.easeOutQuart,
+              )
+              .scale(
+                begin: const Offset(.7, .7),
+                end: const Offset(1, 1),
+                delay: 700.ms,
+                duration: 1500.ms,
+                curve: Curves.easeOutBack,
+              ),
 
-          SvgPicture.asset(AppImages.splashBottom, width: 379.w, height: 156.h),
+          SvgPicture.asset(AppImages.splashBottom, width: 379.w, height: 156.h)
+              .animate()
+              .fade(delay: 1500.ms, duration: 1300.ms)
+              .slideY(
+                begin: 1,
+                delay: 1500.ms,
+                duration: 1300.ms,
+                curve: Curves.easeOutCubic,
+              ),
         ],
       ),
     );
