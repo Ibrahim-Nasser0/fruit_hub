@@ -4,6 +4,7 @@ on:
     push:
         branches:
             - master
+
     pull_request:
         branches:
             - master
@@ -18,9 +19,18 @@ jobs:
 
             - uses: subosito/flutter-action@v2
               with:
-                  flutter-version: "3.44.2"
+                  flutter-version: "3.35.2"
 
             - run: flutter pub get
+
+            - name: Setup Android SDK
+              uses: android-actions/setup-android@v3
+
+            - name: Accept Licenses
+              run: yes | sdkmanager --licenses
+
+            - name: Install NDK
+              run: sdkmanager "ndk;30.0.14904198"
 
             - name: Build APK
               run: flutter build apk --release
