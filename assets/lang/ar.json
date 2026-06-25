@@ -28,5 +28,8 @@
   "have_account": "هل لديك حساب بالفعل؟",
   "with_google": "تسجيل بواسطة جوجل",
   "with_apple": "تسجيل بواسطة أبل",
-  "with_facebook": "تسجيل بواسطة فيسبوك"
+  "with_facebook": "تسجيل بواسطة فيسبوك",
+
+  "accepte_conditions1": "من خلال إنشاء حساب ، فإنك توافق على",
+  "accepte_conditions2": "الشروط والأحكام الخاصة بنا"
 }

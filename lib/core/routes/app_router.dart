@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/features/auth/presentation/view/forgot_password_view.dart';
 import 'package:fruit_hub/features/auth/presentation/view/login_view.dart';
+import 'package:fruit_hub/features/auth/presentation/view/password_recovery_view.dart';
+import 'package:fruit_hub/features/auth/presentation/view/reset_password_view.dart';
+import 'package:fruit_hub/features/auth/presentation/view/signup_view.dart';
 import 'package:fruit_hub/features/on_boarding/presentation/views/on_boarding_view.dart';
 import 'package:fruit_hub/features/splash/presentation/views/splash_View.dart';
 import 'routes.dart';
@@ -10,14 +14,32 @@ class AppRouter {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      //-----Splash Feature-----//
       case Routes.splash:
         return _buildRoute(const SplashView(), settings);
       case Routes.onboarding:
         return _buildRoute(const OnBoardingView(), settings);
-      case Routes.home:
-        return _buildRoute(const SplashView(), settings);
+      //-----Splash Feature-----//
+      //
+      //-----Auth Feature-----//
       case Routes.login:
         return _buildRoute(const LoginView(), settings);
+      case Routes.signup:
+        return _buildRoute(const SignUpView(), settings);
+      case Routes.forgotPassword:
+        return _buildRoute(const ForgotPasswordView(), settings);
+      case Routes.passwordRecovery:
+        return _buildRoute(const PasswordRecoveryView(), settings);
+      case Routes.resetPassword:
+        return _buildRoute(const ResetPasswordView(), settings);
+      ////-----Auth Feature-----////
+      //
+      //-----Home Feature-----//
+      case Routes.home:
+        return _buildRoute(const SplashView(), settings);
+      ////-----Home Feature-----////
+      //
+
       default:
         return _buildRoute(
           Scaffold(

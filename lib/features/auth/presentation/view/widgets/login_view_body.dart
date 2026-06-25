@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fruit_hub/core/routes/app_router.dart';
+import 'package:fruit_hub/core/routes/routes.dart';
 import 'package:fruit_hub/core/utils/constants.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/auth/presentation/view/widgets/login_form.dart';
@@ -21,7 +23,12 @@ class LoginViewBody extends StatelessWidget {
           children: [
             LoginForm(),
             Gap(AppConstants.spacingXS.h),
-            TextButton(onPressed: () {}, child: Text("forgot_password".tr())),
+            TextButton(
+              onPressed: () {
+                AppRouter.navigateTo(context, Routes.forgotPassword);
+              },
+              child: Text("forgot_password".tr()),
+            ),
             Gap(AppConstants.spacingMD.h),
             CustomButton(text: "login".tr(), onPressed: () {}),
             Gap(AppConstants.spacingMD.h),
@@ -38,7 +45,8 @@ class LoginViewBody extends StatelessWidget {
                   radius: AppConstants.radiusXL.r,
                   borderRadius: BorderRadius.circular(AppConstants.radiusXL.r),
                   hoverColor: Theme.of(context).colorScheme.primary,
-                  onTap: () {},
+                  onTap: () => AppRouter.navigateTo(context, Routes.signup),
+
                   child: Text(
                     "create_new_account".tr(),
                     style: TextStyle(
