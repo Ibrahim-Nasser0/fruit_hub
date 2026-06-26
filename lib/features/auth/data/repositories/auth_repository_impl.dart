@@ -1,36 +1,35 @@
 import 'package:dartz/dartz.dart';
+import 'package:fruit_hub/core/errors/exception_mapper.dart';
+import 'package:fruit_hub/core/errors/exceptions.dart';
+import 'package:fruit_hub/core/services/firebase_auth_sevices.dart';
+import 'package:fruit_hub/features/auth/data/models/user_model.dart';
+import 'package:fruit_hub/features/auth/domain/entities/user_entity.dart';
 import '../../../../core/errors/failure.dart';
-import '../../../../core/errors/exceptions.dart';
-import '../../domain/entities/auth_entity.dart';
+
 import '../../domain/repositories/auth_repository.dart';
-import '../datasources/auth_remote_datasource.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
-  final AuthRemoteDataSource remoteDataSource;
+  final FirebaseAuthServices firebaseAuthServices;
 
-  AuthRepositoryImpl({required this.remoteDataSource});
-
-  @override
-  Future<Either<Failure, List<AuthEntity>>> getAuths() async {
-    try {
-      final result = await remoteDataSource.getAuths();
-      return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    } on NetworkException catch (e) {
-      return Left(NetworkFailure(message: e.message));
-    }
-  }
+  AuthRepositoryImpl({required this.firebaseAuthServices});
 
   @override
-  Future<Either<Failure, AuthEntity>> getAuthById(String id) async {
+  Future<Either<Failure, UserEntity>> createUserByEmailAndPassword({
+    required String fullName,
+    required String email,
+    required String password,
+  }) async {
     try {
-      final result = await remoteDataSource.getAuthById(id);
-      return Right(result);
-    } on ServerException catch (e) {
-      return Left(ServerFailure(message: e.message));
-    } on NetworkException catch (e) {
-      return Left(NetworkFailure(message: e.message));
+      final user = await firebaseAuthServices.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return Right(UserModel.fromFirebaseUser(user));
+    } on AppException catch (e) {
+      return Left(e.toFailure());
+    } catch (_) {
+      return const Left(UnknownFailure());
     }
   }
 }

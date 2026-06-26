@@ -3,7 +3,7 @@ abstract class AppException implements Exception {
   final String message;
   final int? statusCode;
 
-  AppException({required this.message, this.statusCode});
+  AppException(String string, {required this.message, this.statusCode});
 
   @override
   String toString() => message;
@@ -12,19 +12,19 @@ abstract class AppException implements Exception {
 /// Server Exception
 /// Thrown when there's an error from the server
 class ServerException extends AppException {
-  ServerException({required super.message, super.statusCode});
+  ServerException(super.string, {required super.message, super.statusCode});
 }
 
 /// Cache Exception
 /// Thrown when there's an error with local cache/storage
 class CacheException extends AppException {
-  CacheException({required super.message});
+  CacheException(super.string, {required super.message});
 }
 
 /// Network Exception
 /// Thrown when there's no internet connection
 class NetworkException extends AppException {
-  NetworkException({
+  NetworkException(super.string, {
     super.message = 'No internet connection. Please check your network.',
   });
 }
@@ -32,7 +32,7 @@ class NetworkException extends AppException {
 /// Unauthorized Exception
 /// Thrown when user is not authenticated
 class UnauthorizedException extends AppException {
-  UnauthorizedException({
+  UnauthorizedException(super.string, {
     super.message = 'Unauthorized access. Please login again.',
     super.statusCode = 401,
   });
@@ -41,7 +41,7 @@ class UnauthorizedException extends AppException {
 /// Forbidden Exception
 /// Thrown when user doesn't have permission
 class ForbiddenException extends AppException {
-  ForbiddenException({
+  ForbiddenException(super.string, {
     super.message = 'Access forbidden. You don\'t have permission.',
     super.statusCode = 403,
   });
@@ -50,7 +50,7 @@ class ForbiddenException extends AppException {
 /// Not Found Exception
 /// Thrown when resource is not found
 class NotFoundException extends AppException {
-  NotFoundException({
+  NotFoundException(super.string, {
     super.message = 'Resource not found.',
     super.statusCode = 404,
   });
@@ -59,7 +59,7 @@ class NotFoundException extends AppException {
 /// Timeout Exception
 /// Thrown when request times out
 class TimeoutException extends AppException {
-  TimeoutException({super.message = 'Request timeout. Please try again.'});
+  TimeoutException(super.string, {super.message = 'Request timeout. Please try again.'});
 }
 
 /// Validation Exception
@@ -67,7 +67,7 @@ class TimeoutException extends AppException {
 class ValidationException extends AppException {
   final Map<String, dynamic>? errors;
 
-  ValidationException({
+  ValidationException(super.string, {
     super.message = 'Validation failed.',
     this.errors,
     super.statusCode = 422,
@@ -77,5 +77,5 @@ class ValidationException extends AppException {
 /// Parse Exception
 /// Thrown when JSON parsing fails
 class ParseException extends AppException {
-  ParseException({super.message = 'Failed to parse response data.'});
+  ParseException(super.string, {super.message = 'Failed to parse response data.'});
 }

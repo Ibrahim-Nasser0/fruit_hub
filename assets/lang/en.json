@@ -1,6 +1,7 @@
 {
   "welcome": "Welcome ",
   "skip": "Skip",
+  "ok": "Ok",
   "get_started": "Get Started",
 
   "onboarding_title1": "Welcome to",
@@ -29,5 +30,16 @@
   "with_facebook": "Login With Facebook",
 
   "accepte_conditions1": "By creating an account, you agree to",
-  "accepte_conditions2": "Our Terms and Conditions"
+  "accepte_conditions2": "Our Terms and Conditions",
+  "accept_terms_message": "You must accept the terms and conditions first.",
+
+  "oops": "Oops",
+  "success": "Success",
+  "warning": "Warning",
+
+  "weak_password": "The password is too weak.",
+  "email_already_in_use": "This email is already in use.",
+  "invalid_email": "Invalid email address.",
+  "network_error": "Please check your internet connection.",
+  "unknown_error": "Something went wrong. Please try again."
 }
