@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub/core/routes/app_router.dart';
 import 'package:fruit_hub/core/routes/routes.dart';
 import 'package:fruit_hub/core/utils/constants.dart';
+import 'package:fruit_hub/core/widgets/animations/button_animation.dart';
+import 'package:fruit_hub/core/widgets/animations/r_slide_animation.dart';
 import 'package:fruit_hub/core/widgets/custom_button.dart';
 import 'package:fruit_hub/features/auth/presentation/view/widgets/sign_up_form.dart';
 import 'package:fruit_hub/features/auth/presentation/view/widgets/terms_and_conditons.dart';
@@ -19,11 +22,25 @@ class SignUpViewBody extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SignUpForm(),
+            const SignUpForm()
+                .animate()
+                .shimmer(
+                  delay: Duration(milliseconds: 40),
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                )
+                .fade(
+                  delay: Duration(milliseconds: 60),
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                ),
             // Gap(AppConstants.spacingMD.h),
-            const TermsAndConditons(),
+            const TermsAndConditons().rSlideAnimation(),
             Gap(AppConstants.spacingMD.h),
-            CustomButton(text: "sign_up".tr(), onPressed: () {}),
+            CustomButton(
+              text: "sign_up".tr(),
+              onPressed: () {},
+            ).buttonAnimation(),
             Gap(AppConstants.spacingMD.h),
             Row(
               children: [
@@ -50,7 +67,7 @@ class SignUpViewBody extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
+            ).rSlideAnimation(),
           ],
         ),
       ),

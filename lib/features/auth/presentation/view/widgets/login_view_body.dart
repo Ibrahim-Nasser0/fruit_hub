@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub/core/routes/app_router.dart';
 import 'package:fruit_hub/core/routes/routes.dart';
@@ -21,7 +22,16 @@ class LoginViewBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            LoginForm(),
+            LoginForm()
+                .animate()
+                .shimmer(
+                  delay: Duration(milliseconds: 40),
+                  duration: Duration(milliseconds: 500),
+                )
+                .fade(
+                  delay: Duration(milliseconds: 60),
+                  duration: Duration(milliseconds: 500),
+                ),
             Gap(AppConstants.spacingXS.h),
             TextButton(
               onPressed: () {
@@ -30,7 +40,22 @@ class LoginViewBody extends StatelessWidget {
               child: Text("forgot_password".tr()),
             ),
             Gap(AppConstants.spacingMD.h),
-            CustomButton(text: "login".tr(), onPressed: () {}),
+            CustomButton(text: "login".tr(), onPressed: () {})
+                .animate()
+                .fade(delay: 100.ms, duration: 700.ms)
+                .slideY(
+                  begin: .5,
+                  delay: 100.ms,
+                  duration: 500.ms,
+                  curve: Curves.easeOutQuart,
+                )
+                .scale(
+                  begin: const Offset(.7, .7),
+                  end: const Offset(1, 1),
+                  delay: 100.ms,
+                  duration: 500.ms,
+                  curve: Curves.easeOutBack,
+                ),
             Gap(AppConstants.spacingMD.h),
             Row(
               children: [
