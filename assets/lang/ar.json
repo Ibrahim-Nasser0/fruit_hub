@@ -2,6 +2,7 @@
   "welcome": "مرحبا",
   "skip": "تخطي",
   "next": "التالي",
+  "ok": "حسنا",
   "get_started": "ابدأ الان",
 
   "onboarding_title1": "مرحبًا بك في",
@@ -31,5 +32,16 @@
   "with_facebook": "تسجيل بواسطة فيسبوك",
 
   "accepte_conditions1": "من خلال إنشاء حساب ، فإنك توافق على",
-  "accepte_conditions2": "الشروط والأحكام الخاصة بنا"
+  "accepte_conditions2": "الشروط والأحكام الخاصة بنا",
+  "accept_terms_message": "يجب الموافقة على الشروط والأحكام أولاً.",
+
+  "oops": "أوه، عفواً",
+  "success": "نجاح",
+  "warning":"تنبيه",
+
+  "weak_password": "كلمة المرور ضعيفة.",
+  "email_already_in_use": "هذا البريد الإلكتروني مستخدم بالفعل.",
+  "invalid_email": "البريد الإلكتروني غير صالح.",
+  "network_error": "تحقق من اتصال الإنترنت.",
+  "unknown_error": "حدث خطأ غير متوقع، حاول مرة أخرى."
 }

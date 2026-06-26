@@ -1,3 +1,6 @@
+import 'package:fruit_hub/core/services/firebase_auth_sevices.dart';
+import 'package:fruit_hub/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:fruit_hub/features/auth/domain/repositories/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -6,17 +9,23 @@ import '../network/network_info.dart';
 import '../api/api_interceptors.dart';
 import '../config/app_config.dart';
 
-final sl = GetIt.instance;
+final getIt = GetIt.instance;
 
 /// Initialize Dependency Injection
 Future<void> init() async {
   //! Core
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
+  getIt.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(getIt()));
+  getIt.registerSingleton<FirebaseAuthServices>(FirebaseAuthServices());
 
   //! External
-  sl.registerLazySingleton(() => InternetConnectionChecker.createInstance());
+  getIt.registerLazySingleton(() => InternetConnectionChecker.createInstance());
+  //! Auth
+  getIt.registerLazySingleton<AuthRepository>(
+    () =>
+        AuthRepositoryImpl(firebaseAuthServices: getIt<FirebaseAuthServices>()),
+  );
 
-  sl.registerLazySingleton(() {
+  getIt.registerLazySingleton(() {
     final dio = Dio(
       BaseOptions(
         baseUrl: AppConfig.baseUrl,

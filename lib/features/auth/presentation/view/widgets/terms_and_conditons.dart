@@ -4,14 +4,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fruit_hub/core/utils/constants.dart';
 
 class TermsAndConditons extends StatefulWidget {
-  const TermsAndConditons({super.key});
+  const TermsAndConditons({super.key, required this.onChanged});
+  final ValueChanged<bool> onChanged;
 
   @override
   State<TermsAndConditons> createState() => _TermsAndConditonsState();
 }
 
 class _TermsAndConditonsState extends State<TermsAndConditons> {
-  bool accebted = false;
+  bool isAccepted = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -20,10 +21,11 @@ class _TermsAndConditonsState extends State<TermsAndConditons> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppConstants.radiusSM.r),
           ),
-          value: accebted,
+          value: isAccepted,
           onChanged: (value) {
             setState(() {
-              accebted = !accebted;
+              isAccepted = !isAccepted;
+              widget.onChanged(isAccepted);
             });
           },
         ),
@@ -35,7 +37,7 @@ class _TermsAndConditonsState extends State<TermsAndConditons> {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: "accepte_conditions1".tr(),
+                  text: "${"accepte_conditions1".tr()} ",
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 TextSpan(
