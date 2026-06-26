@@ -16,4 +16,8 @@ class AppImages {
   static const String onBoardingIcon2 =
       "assets/images/splash&onbboarding/pineapple.svg";
   ////-----End Splah & Onboarding Images-----////
+  //-----Auth-----//
+  static const String googleIcon = 'assets/icons/google Icon.svg';
+  static const String appleIcon = 'assets/icons/apple Icon.svg';
+  static const String facebookIcon = 'assets/icons/facebook Icon.svg';
 }

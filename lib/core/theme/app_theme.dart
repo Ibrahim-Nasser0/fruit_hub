@@ -65,6 +65,12 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(textStyle: AppTypography.button(locale)),
       ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: AppColors.textPrimary,
+          iconSize: 24,
+        ),
+      ),
 
       cardTheme: CardThemeData(
         color: AppColors.surface,
@@ -122,6 +128,12 @@ class AppTheme {
 
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(textStyle: AppTypography.button(locale)),
+      ),
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: AppColors.textSecondary,
+          iconSize: 24,
+        ),
       ),
       cardTheme: CardThemeData(
         color: AppColors.surfaceDark,
