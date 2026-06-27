@@ -36,4 +36,40 @@ class FirebaseAuthServices {
       throw ServerException('', message: e.toString());
     }
   }
+
+  Future<User> loginUserWithEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return credential.user!;
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          throw ValidationException('', message: 'invalid_email');
+
+        case 'invalid-credential':
+          throw ValidationException('', message: 'invalid_email_or_password');
+
+        case 'user-disabled':
+          throw ForbiddenException('', message: 'user_disabled');
+
+        case 'network-request-failed':
+          throw NetworkException('');
+
+        case 'too-many-requests':
+          throw ServerException('', message: 'too_many_requests');
+
+        default:
+          throw ServerException('', message: 'unknown_error');
+      }
+    } catch (_) {
+      throw ServerException('', message: 'unknown_error');
+    }
+  }
 }

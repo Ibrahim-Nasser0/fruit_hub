@@ -32,4 +32,23 @@ class AuthRepositoryImpl implements AuthRepository {
       return const Left(UnknownFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, UserEntity>> loginUserByEmailAndPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final user = await firebaseAuthServices.loginUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      return Right(UserModel.fromFirebaseUser(user));
+    } on AppException catch (e) {
+      return Left(e.toFailure());
+    } catch (_) {
+      return const Left(UnknownFailure());
+    }
+  }
 }
