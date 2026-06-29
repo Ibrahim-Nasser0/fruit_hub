@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fruit_hub/firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'core/routes/app_router.dart';
 import 'core/routes/routes.dart';
 import 'core/theme/app_theme.dart';
@@ -12,10 +14,16 @@ import 'core/localization/localization_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
+  await dotenv.load();
+
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await GoogleFonts.pendingFonts([GoogleFonts.inter(), GoogleFonts.cairo()]);
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //auth
+  await GoogleSignIn.instance.initialize(
+    serverClientId: dotenv.get("serverClientId"),
+  );
 
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([

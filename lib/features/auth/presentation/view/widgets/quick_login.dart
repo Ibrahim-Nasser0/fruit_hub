@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruit_hub/core/utils/app_images.dart';
@@ -8,6 +9,7 @@ import 'package:fruit_hub/core/widgets/animations/fade_animation.dart';
 import 'package:fruit_hub/core/widgets/animations/l_slide_animation.dart';
 
 import 'package:fruit_hub/core/widgets/animations/r_slide_animation.dart';
+import 'package:fruit_hub/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:gap/gap.dart';
 
 class QuickLogin extends StatelessWidget {
@@ -20,17 +22,24 @@ class QuickLogin extends StatelessWidget {
         CustomSocialLoginButton(
           socialIcon: AppImages.googleIcon,
           tital: "with_google",
+          onTap: () {
+            context.read<LoginCubit>().loginWithGoogle();
+          },
         ).rSlideAnimation(),
         Gap(AppConstants.spacingMD.h),
         CustomSocialLoginButton(
           socialIcon: AppImages.appleIcon,
           tital: 'with_apple',
           isBlack: true,
+          onTap: () {},
         ).lSlideAnimation(),
         Gap(AppConstants.spacingMD.h),
         CustomSocialLoginButton(
           socialIcon: AppImages.facebookIcon,
           tital: 'with_facebook',
+          onTap: () {
+            context.read<LoginCubit>().loginWithFacebook();
+          },
         ).rSlideAnimation(),
       ],
     );
@@ -43,15 +52,17 @@ class CustomSocialLoginButton extends StatelessWidget {
     required this.socialIcon,
     required this.tital,
     this.isBlack = false,
+    required this.onTap,
   });
   final String socialIcon;
   final String tital;
   final bool isBlack;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       hoverColor: Theme.of(context).colorScheme.primary,
       radius: AppConstants.radiusXL.r,
       borderRadius: BorderRadius.circular(AppConstants.radiusXL.r),

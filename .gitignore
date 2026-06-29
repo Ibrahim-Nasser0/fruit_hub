@@ -11,6 +11,14 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+.env
+.env.*
+*.jks
+*.keystore
+android/key.properties
+ios/Runner/GoogleService-Info-Private.plist
+serviceAccountKey.json
+
 
 # IntelliJ related
 *.iml

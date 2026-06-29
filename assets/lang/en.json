@@ -36,10 +36,22 @@
   "oops": "Oops",
   "success": "Success",
   "warning": "Warning",
-
+  "loading": "Loading",
+  "please_wait": "Please wait...",
+ "login_success":"Login Success",
   "weak_password": "The password is too weak.",
+  "wrong_password": "Wrong password provided for that user.",
   "email_already_in_use": "This email is already in use.",
   "invalid_email": "Invalid email address.",
   "network_error": "Please check your internet connection.",
-  "unknown_error": "Something went wrong. Please try again."
+  "unknown_error": "Something went wrong. Please try again.",
+  "user_not_found": "User not found for that email.",
+
+  "invalid_email_or_password": "The email address or password is incorrect.",
+  "user_disabled": "This account has been disabled.",
+  "too_many_requests": "Too many attempts have been made. Please try again later.",
+  "google_sign_in_cancelled": "تم إلغاء تسجيل الدخول.",
+  "account_exists_with_different_credential": "يوجد حساب بنفس البريد الإلكتروني باستخدام طريقة تسجيل دخول مختلفة.",
+  "invalid_google_credential": "تعذر التحقق من حساب Google."
+
 }

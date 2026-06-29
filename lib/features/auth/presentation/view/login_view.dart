@@ -1,6 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/di/injection_container.dart';
+import 'package:fruit_hub/features/auth/domain/repositories/auth_repository.dart';
 import 'package:fruit_hub/features/auth/presentation/view/widgets/login_view_body.dart';
+import 'package:fruit_hub/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -20,7 +24,13 @@ class LoginView extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: const SafeArea(child: LoginViewBody()),
+        body: SafeArea(
+          child: BlocProvider(
+            create: (context) =>
+                LoginCubit(authRepository: getIt<AuthRepository>()),
+            child: LoginViewBody(),
+          ),
+        ),
       ),
     );
   }

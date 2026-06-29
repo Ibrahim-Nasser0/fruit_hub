@@ -37,11 +37,22 @@
 
   "oops": "أوه، عفواً",
   "success": "نجاح",
-  "warning":"تنبيه",
+  "warning": "تنبيه",
+  "loading": "جاري التحميل",
+  "please_wait": "يرجى الانتظار...",
+  "login_success": "تم تسجيل الدخول بنجاح",
 
   "weak_password": "كلمة المرور ضعيفة.",
+  "wrong_password": "تم إدخال كلمة مرور خاطئة لهذا المستخدم.",
   "email_already_in_use": "هذا البريد الإلكتروني مستخدم بالفعل.",
   "invalid_email": "البريد الإلكتروني غير صالح.",
   "network_error": "تحقق من اتصال الإنترنت.",
-  "unknown_error": "حدث خطأ غير متوقع، حاول مرة أخرى."
+  "unknown_error": "حدث خطأ غير متوقع، حاول مرة أخرى.",
+  "user_not_found": "لم يتم العثور على المستخدم المرتبط بهذا البريد الإلكتروني.",
+  "invalid_email_or_password": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+  "user_disabled": "تم تعطيل هذا الحساب.",
+  "too_many_requests": "تم إجراء عدد كبير من المحاولات، حاول مرة أخرى لاحقًا.",
+  "google_sign_in_cancelled": "تم إلغاء تسجيل الدخول.",
+  "account_exists_with_different_credential": "يوجد حساب بنفس البريد الإلكتروني باستخدام طريقة تسجيل دخول مختلفة.",
+  "invalid_google_credential": "تعذر التحقق من حساب Google."
 }
