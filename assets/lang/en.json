@@ -38,7 +38,7 @@
   "warning": "Warning",
   "loading": "Loading",
   "please_wait": "Please wait...",
-
+ "login_success":"Login Success",
   "weak_password": "The password is too weak.",
   "wrong_password": "Wrong password provided for that user.",
   "email_already_in_use": "This email is already in use.",
@@ -49,5 +49,9 @@
 
   "invalid_email_or_password": "The email address or password is incorrect.",
   "user_disabled": "This account has been disabled.",
-  "too_many_requests": "Too many attempts have been made. Please try again later."
+  "too_many_requests": "Too many attempts have been made. Please try again later.",
+  "google_sign_in_cancelled": "تم إلغاء تسجيل الدخول.",
+  "account_exists_with_different_credential": "يوجد حساب بنفس البريد الإلكتروني باستخدام طريقة تسجيل دخول مختلفة.",
+  "invalid_google_credential": "تعذر التحقق من حساب Google."
+
 }
