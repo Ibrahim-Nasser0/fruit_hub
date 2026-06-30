@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fruit_hub/firebase_options.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -14,7 +13,7 @@ import 'core/localization/localization_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
-  await dotenv.load();
+
 
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -22,7 +21,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //auth
   await GoogleSignIn.instance.initialize(
-    serverClientId: dotenv.get("serverClientId"),
+    serverClientId:
+        '883694809918-qadcvocjqlaval99kbdf6c176nhm5mlo.apps.googleusercontent.com',
   );
 
   // Set preferred orientations

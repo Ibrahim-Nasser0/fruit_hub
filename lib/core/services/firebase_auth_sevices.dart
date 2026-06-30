@@ -174,4 +174,30 @@ class FirebaseAuthServices {
       throw ServerException('', message: e.toString());
     }
   }
+
+  Future<void> sendPasswordResetEmail({required String email}) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'invalid-email':
+          throw ValidationException('', message: 'invalid_email');
+
+        case 'user-not-found':
+          throw ValidationException('', message: 'user_not_found');
+
+        case 'network-request-failed':
+          throw NetworkException('');
+
+        case 'too-many-requests':
+          throw ServerException('', message: 'too_many_requests');
+
+        default:
+          throw ServerException('', message: 'unknown_error');
+      }
+    } catch (_) {
+      throw ServerException('', message: 'unknown_error');
+    }
+  }
+
 }
