@@ -15,7 +15,7 @@ extension AppAnimations on Widget {
           begin: const Offset(.7, .7),
           end: const Offset(1, 1),
           delay: 100.ms,
-          duration: 700.ms,
+          duration: 500.ms,
           curve: Curves.easeOutBack,
         );
   }

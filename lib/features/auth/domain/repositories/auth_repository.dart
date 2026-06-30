@@ -15,4 +15,5 @@ abstract class AuthRepository {
   });
   Future<Either<Failure, UserEntity>> loginUserWithGoogle();
   Future<Either<Failure, UserEntity>> loginWithFacebook();
+  Future<Either<Failure, void>> resetPassword({required String email});
 }
