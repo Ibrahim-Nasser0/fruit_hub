@@ -22,7 +22,8 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //auth
   await GoogleSignIn.instance.initialize(
-    serverClientId: dotenv.get("serverClientId"),
+    serverClientId:
+        '883694809918-qadcvocjqlaval99kbdf6c176nhm5mlo.apps.googleusercontent.com',
   );
 
   // Set preferred orientations
