@@ -27,20 +27,14 @@ class QuickLogin extends StatelessWidget {
           },
         ).rSlideAnimation(),
         Gap(AppConstants.spacingMD.h),
-        CustomSocialLoginButton(
-          socialIcon: AppImages.appleIcon,
-          tital: 'with_apple',
-          isBlack: true,
-          onTap: () {},
-        ).lSlideAnimation(),
-        Gap(AppConstants.spacingMD.h),
+
         CustomSocialLoginButton(
           socialIcon: AppImages.facebookIcon,
           tital: 'with_facebook',
           onTap: () {
             context.read<LoginCubit>().loginWithFacebook();
           },
-        ).rSlideAnimation(),
+        ).lSlideAnimation(),
       ],
     );
   }
